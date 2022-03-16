@@ -83,7 +83,8 @@ ADD confdir/nginx/laravel.php /usr/share/nginx/html/laravel.php
 COPY confdir/php/php-fpm.conf /etc/php-fpm.conf
 COPY confdir/php/www.conf /etc/php-fpm.d/www.conf
 
-RUN curl -s ifconfig.io > /usr/share/nginx/html/index.html \
+RUN rm -f /usr/share/nginx/html/index.html \
+  && curl -s ifconfig.io > /usr/share/nginx/html/index.html \
   && echo "<?php phpinfo(); ?>" > /usr/share/nginx/html/phpinfo.php
 
 ADD entry-point.sh /entry-point.sh
